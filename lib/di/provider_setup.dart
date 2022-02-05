@@ -1,5 +1,5 @@
-// import 'package:flutter_jetnews/data/repository/fake_interests_repository_impl.dart';
-// import 'package:flutter_jetnews/domain/repository/fake_interests_repository.dart';
+// import 'package:flutter_jetnews/data/repository/topic_api_repository_impl.dart';
+// import 'package:flutter_jetnews/domain/repository/topic_api_repository.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:provider/provider.dart';
 // import 'package:provider/single_child_widget.dart';

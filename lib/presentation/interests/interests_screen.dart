@@ -17,7 +17,7 @@ class _InterestsScreenState extends State<InterestsScreen>
   int currentIndex = 0;
 
   final List<Widget> _tabMenu = [
-    Topics(),
+    const Topics(),
     const People(),
     const Publications(),
   ];
