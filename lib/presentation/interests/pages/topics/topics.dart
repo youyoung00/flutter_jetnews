@@ -8,10 +8,35 @@ class Topics extends StatefulWidget {
 }
 
 class _TopicsState extends State<Topics> {
-  bool selected = true;
+  List<bool> btnStates = [false, false, false];
+
+  // StreamSubscription? _subscription;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Future.microtask(() {
+  //     final viewModel = context.read<TopicsViewModel>();
+  //     _subscription = viewModel.eventStream.listen((event) {
+  //       event.when(showSnackBar: (message) {
+  //         final snackBar = SnackBar(content: Text(message));
+  //         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //       });
+  //     });
+  //   });
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   _subscription?.cancel();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    // final viewModel = context.watch<TopicsViewModel>();
+    // final state = viewModel.state;
+
     return Column(
       children: [
         Container(
@@ -26,23 +51,32 @@ class _TopicsState extends State<Topics> {
             ),
           ),
         ),
+        // state.isLoading
+        //     ? const CircularProgressIndicator() :
         Expanded(
           child: ListView.builder(
-            itemCount: 3,
+            itemCount: btnStates.length,
             itemBuilder: (BuildContext context, int i) {
               return Column(
                 children: [
                   ListTile(
                     leading: Image.asset(
                         'assets/drawable-nodpi/placeholder_1_1.png'),
-                    title: Text('Jetpack Compose'),
+                    title: Text(
+                      // state.topics[i].name,
+                      'test',
+                    ),
                     trailing: InkWell(
                       onTap: () {
+                        // selected = state.topics[i].select;
                         setState(() {
-                          selected = !selected;
+                          btnStates[i] = !btnStates[i];
                         });
                       },
-                      child: _buildCheckButton(),
+                      child: _buildCheckButton(
+                        btnState: btnStates[i],
+                        currentIndex: i,
+                      ),
                     ),
                   ),
                   const Divider(
@@ -57,7 +91,10 @@ class _TopicsState extends State<Topics> {
     );
   }
 
-  Widget _buildCheckButton() {
+  Widget _buildCheckButton({
+    required bool btnState,
+    required int currentIndex,
+  }) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -65,7 +102,7 @@ class _TopicsState extends State<Topics> {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: selected ? Colors.white : Colors.red,
+            color: btnState ? Colors.red : Colors.white,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
@@ -77,8 +114,8 @@ class _TopicsState extends State<Topics> {
           ),
         ),
         Icon(
-          selected ? Icons.add : Icons.check,
-          color: selected ? Colors.red : Colors.white,
+          btnState ? Icons.check : Icons.add,
+          color: btnState ? Colors.white : Colors.red,
         ),
       ],
     );

@@ -14,6 +14,7 @@ class TopicApi {
         Uri.parse('http://localhost:3000/topic/'),
       );
       List<Map<String, dynamic>> jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
       return Result.success(jsonResponse);
     } catch (e) {
       return const Result.error('네트워크 에러');

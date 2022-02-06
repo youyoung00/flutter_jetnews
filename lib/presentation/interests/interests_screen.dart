@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jetnews/presentation/interests/tab_menu/people.dart';
-import 'package:flutter_jetnews/presentation/interests/tab_menu/publications.dart';
-import 'package:flutter_jetnews/presentation/interests/tab_menu/topics.dart';
+import 'package:flutter_jetnews/presentation/interests/pages/people/people.dart';
+import 'package:flutter_jetnews/presentation/interests/pages/publications/publications.dart';
+import 'package:flutter_jetnews/presentation/interests/pages/topics/topics.dart';
 
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({Key? key}) : super(key: key);

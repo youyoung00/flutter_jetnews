@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jetnews/presentation/home/main_news.dart';
-import 'package:flutter_jetnews/presentation/interests/interests_view_model.dart';
 import 'package:flutter_jetnews/ui/colors.dart';
 import 'package:provider/provider.dart';
 
+import 'di/provider_setup.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: globalProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,14 +28,7 @@ class MyApp extends StatelessWidget {
             ),
         fontFamily: 'Montserrat',
       ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<InterestsViewModel>(
-            create: (_) => InterestsViewModel(),
-            child: const MainNews(),
-          ),
-        ],
-      ),
+      home: const MainNews(),
     );
   }
 }

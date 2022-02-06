@@ -8,7 +8,7 @@ class Publications extends StatefulWidget {
 }
 
 class _PublicationsState extends State<Publications> {
-  bool selected = true;
+  List<bool> btnStates = [false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _PublicationsState extends State<Publications> {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: 3,
+            itemCount: btnStates.length,
             itemBuilder: (BuildContext context, int i) {
               return Column(
                 children: [
@@ -39,10 +39,13 @@ class _PublicationsState extends State<Publications> {
                     trailing: InkWell(
                       onTap: () {
                         setState(() {
-                          selected = !selected;
+                          btnStates[i] = !btnStates[i];
                         });
                       },
-                      child: _buildCheckButton(),
+                      child: _buildCheckButton(
+                        btnState: btnStates[i],
+                        currentIndex: i,
+                      ),
                     ),
                   ),
                   const Divider(
@@ -57,7 +60,10 @@ class _PublicationsState extends State<Publications> {
     );
   }
 
-  Widget _buildCheckButton() {
+  Widget _buildCheckButton({
+    required bool btnState,
+    required int currentIndex,
+  }) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -65,7 +71,7 @@ class _PublicationsState extends State<Publications> {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: selected ? Colors.white : Colors.red,
+            color: btnState ? Colors.red : Colors.white,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
@@ -77,8 +83,8 @@ class _PublicationsState extends State<Publications> {
           ),
         ),
         Icon(
-          selected ? Icons.add : Icons.check,
-          color: selected ? Colors.red : Colors.white,
+          btnState ? Icons.check : Icons.add,
+          color: btnState ? Colors.white : Colors.red,
         ),
       ],
     );
