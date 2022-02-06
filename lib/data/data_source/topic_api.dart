@@ -11,10 +11,10 @@ class TopicApi {
   Future<Result<Iterable>> fetch() async {
     try {
       final response = await client.get(
-        Uri.parse('http://localhost:3000/topic/'),
+        Uri.parse('http://192.168.219.105:3000/topic/'),
       );
-      List<Map<String, dynamic>> jsonResponse = jsonDecode(response.body);
-      print(jsonResponse);
+      Iterable jsonResponse = jsonDecode(response.body);
+      // print(jsonResponse);
       return Result.success(jsonResponse);
     } catch (e) {
       return const Result.error('네트워크 에러');

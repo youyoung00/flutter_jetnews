@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_jetnews/presentation/interests/pages/people/people.dart';
 import 'package:flutter_jetnews/presentation/interests/pages/publications/publications.dart';
 import 'package:flutter_jetnews/presentation/interests/pages/topics/topics.dart';
+import 'package:flutter_jetnews/presentation/interests/pages/topics/topics_view_model.dart';
+import 'package:provider/provider.dart';
 
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({Key? key}) : super(key: key);
@@ -25,7 +27,9 @@ class _InterestsScreenState extends State<InterestsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: _tabMenu.length, vsync: this);
+    final viewModel = context.read<TopicsViewModel>();
+    viewModel.fetch();
   }
 
   @override
@@ -63,7 +67,7 @@ class _InterestsScreenState extends State<InterestsScreen>
         onPageChanged: (currentIndex) {
           _tabController.index = currentIndex;
         },
-        itemCount: 3,
+        itemCount: _tabMenu.length,
         itemBuilder: (BuildContext context, int i) {
           return _tabMenu[i];
         },

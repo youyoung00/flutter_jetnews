@@ -24,6 +24,7 @@ class TopicsViewModel with ChangeNotifier {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
     final Result<List<Topic>> result = await getTopicsUseCase();
+    // print('RESULT 확인 : $result');
     result.when(
       success: (topics) {
         _state = state.copyWith(topics: topics);

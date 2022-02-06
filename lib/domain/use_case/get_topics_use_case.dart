@@ -10,8 +10,9 @@ class GetTopicsUseCase {
   Future<Result<List<Topic>>> call() async {
     final result = await repository.fetch();
 
-    return result.when(success: (photos) {
-      return Result.success(photos);
+    return result.when(success: (topics) {
+      // print('RESULT 확인 : $result');
+      return Result.success(topics);
     }, error: (message) {
       return Result.error(message);
     });

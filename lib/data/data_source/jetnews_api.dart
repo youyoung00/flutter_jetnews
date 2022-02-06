@@ -11,7 +11,7 @@ class JetnewsApi {
   Future<Result<Iterable>> fetch(String query) async {
     try {
       final response = await client.get(
-        Uri.parse('http://localhost:3000/jetnews/'),
+        Uri.parse('http://192.168.219.105:3000/jetnews/'),
       );
       List jsonResponse = jsonDecode(response.body);
       return Result.success(jsonResponse);
