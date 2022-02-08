@@ -9,12 +9,13 @@ class TopicApi {
   TopicApi(this.client);
 
   Future<Result<Iterable>> fetch() async {
+    String schoolIp = '192.168.0.80';
+    String homeIp = '192.168.219.106';
     try {
       final response = await client.get(
-        Uri.parse('http://192.168.219.105:3000/topic/'),
+        Uri.parse('http://$schoolIp:3000/topic/'),
       );
       Iterable jsonResponse = jsonDecode(response.body);
-      // print(jsonResponse);
       return Result.success(jsonResponse);
     } catch (e) {
       return const Result.error('네트워크 에러');

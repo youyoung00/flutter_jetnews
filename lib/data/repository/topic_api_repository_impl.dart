@@ -15,7 +15,6 @@ class TopicApiRepositoryImpl implements TopicApiRepository {
     return result.when(
       success: (iterable) {
         final topicList = iterable.map((e) => Topic.fromJson(e)).toList();
-
         return Result.success(topicList);
       },
       error: (message) {

@@ -22,6 +22,7 @@ class _TopicsState extends State<Topics> {
     super.initState();
     Future.microtask(() {
       final viewModel = context.read<TopicsViewModel>();
+      // viewModel.fetch();
       _subscription = viewModel.eventStream.listen((event) {
         event.when(showSnackBar: (message) {
           final snackBar = SnackBar(content: Text(message));
